@@ -1,0 +1,40 @@
+import './style.css'
+import { createScene } from './components/scene.js'
+import { createCamera } from './components/camera.js'
+import { createSphere } from './components/sphere.js'
+import { createRenderer } from './actors/renderer'
+import { createAmbientLight } from './components/lights'
+import {OrbitControls} from 'three/examples/jsm/controls/OrbitControls';
+
+const main = () => {
+ 
+	const scene = createScene();
+	const camera = createCamera();
+	camera.position.setZ(50);
+	const initialSphere = createSphere();
+	scene.add(initialSphere);
+	const renderer = createRenderer('#canvas');
+	const ambientLight = createAmbientLight();
+
+	scene.add(ambientLight)
+	// renderer.render(scene,camera);
+	console.log(initialSphere)
+	const controls = new OrbitControls(camera, renderer.domElement);
+function animate(sphere,controls,renderer) {
+	// requestAnimationFrame(animate)
+	// 
+	// // sphere.rotation.x += 0.01;
+	// sphere.rotation.y += 0.005;
+	// sphere.rotation.z += 0.005;
+	//
+	// controls.update();
+	//
+	console.log(sphere.rotation)
+	renderer.render(scene,camera);
+
+
+}
+	// animate(initialSphere,controls,renderer)
+}
+
+main();
